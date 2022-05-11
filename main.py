@@ -1,15 +1,18 @@
 #1. Importar la librería Path de Python
 from pathlib import Path 
 
+#Mostrar Bienvenida y menú de opciones.
 print("""
 Bienvenid@ al CLI de archivos en el Sistema.
 Este es el directorio en el cual te encuentras: 
 """)
-#2. Obtener la ruta del directorio actual   
+#2. Mostrar la ruta del directorio actual   
 print(Path.cwd())
 
-#3. Crear un objeto de tipo Path
+#Guardar nuestra ruta actual en una variable
 directorio_actual = Path.cwd() #Conocer en qué directorio estamos ubicados
+
+#3. Crear un objeto de tipo Path
 path = Path(directorio_actual)#Crear un objeto de tipo Path
 
 #4. Mostrarle al usuario las opciones a elegir
