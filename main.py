@@ -1,3 +1,14 @@
+BLACK = '\033[30m'
+RED = '\033[31m'
+GREEN = '\033[32m'
+YELLOW = '\033[33m'
+BLUE = '\033[34m'
+MAGENTA = '\033[35m'
+CYAN = '\033[36m'
+WHITE = '\033[37m'
+RESET = '\033[39m'
+BLACK = '\033[30m'
+
 #1. Importar la librería Path de Python
 from pathlib import Path 
 
@@ -17,6 +28,7 @@ path = Path(directorio_actual)
 
 #Crear carpeta que contenga los archivos
 path_canciones = path / "canciones"
+lista_canciones = path_canciones / "lista.txt"
 
 if not path_canciones.exists():
     path_canciones.mkdir()
@@ -36,15 +48,23 @@ def menu_opciones():
     d) Salir.
     """)
 
+def opcion():
+    pass
+    
+
 def mostrar_contenido(ruta_archivo):
     if ruta_archivo.is_file and ruta_archivo.exists():
         return ruta_archivo.read_text()
 
 
+
+
+
 #5. Preguntar al usuario la tarea que desea realizar
 menu_opciones()
-tarea = input("¿Qué tarea deseas realizar? ")
 
+
+tarea = input("¿Qué tarea deseas realizar?\n")
 #while (tarea != "d"):
 if tarea == "a":
     print("Vas a listar documentos con extensión .txt")
@@ -57,6 +77,10 @@ if tarea == "a":
             if dir.is_file() and dir.suffix == ".txt":
                 print("Nombre: ", dir.name)
 
+    menu_opciones()
+
+   
+
 elif tarea == "b":
     print("Vas a leer un documento.")
 
@@ -66,8 +90,20 @@ elif tarea == "b":
     contenido = mostrar_contenido(path_canciones / cancion )
     print(contenido)
 
+    
+
 elif tarea == "c":
     print("Vas a editar un documento")
+
+    with open(lista_canciones, "w") as file:
+        file.write("Lista de canciones favoritas: ")
+        file.close()
+
+    cancion_favorita = input("¿Cuál es tu canción favorita?:\n")
+
+    with open(lista_canciones, "a+") as file:
+        file.write(cancion_favorita)
+    
 elif tarea == "d":
     print("Salir del programa")
 else: 
