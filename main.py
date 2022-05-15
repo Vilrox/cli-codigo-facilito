@@ -1,14 +1,3 @@
-BLACK = '\033[30m'
-RED = '\033[31m'
-GREEN = '\033[32m'
-YELLOW = '\033[33m'
-BLUE = '\033[34m'
-MAGENTA = '\033[35m'
-CYAN = '\033[36m'
-WHITE = '\033[37m'
-RESET = '\033[39m'
-BLACK = '\033[30m'
-
 #1. Importar la librería Path de Python
 from pathlib import Path 
 
@@ -39,72 +28,69 @@ if not path_canciones.exists():
 
 
 #4. Definir funciones:
-def menu_opciones():
-    print("""
-    Menú de opciones:
-    a) Listar documentos.
-    b) Leer un documento.
-    c) Editar un documento.
-    d) Salir.
-    """)
+def clear(): 
+    print("\n" * 3)
 
-def opcion():
-    pass
-    
+def continuar():
+    print("Presiona 'enter' para continuar") 
 
 def mostrar_contenido(ruta_archivo):
     if ruta_archivo.is_file and ruta_archivo.exists():
         return ruta_archivo.read_text()
 
+while True:
+    try:
+        print("""¿Qué tarea deseas realizar:
+        Menú de opciones:
+            Presiona a para Listar documentos.
+            Presiona b para Leer un documento.
+            Presiona c para Editar un documento.
+            Presiona x para Salir.""")
 
-
-
-
-#5. Preguntar al usuario la tarea que desea realizar
-menu_opciones()
-
-
-tarea = input("¿Qué tarea deseas realizar?\n")
-#while (tarea != "d"):
-if tarea == "a":
-    print("Vas a listar documentos con extensión .txt")
-    #input("¿Conoces el nombre del archivo?") #Esto se puede hacer en una función
-    #Para que se repita en las tres opciones
-
-    if path_canciones.is_dir():
-        for dir in path_canciones.iterdir():
-
-            if dir.is_file() and dir.suffix == ".txt":
-                print("Nombre: ", dir.name)
-
-    menu_opciones()
-
-   
-
-elif tarea == "b":
-    print("Vas a leer un documento.")
-
-    cancion = input("Ingresa el nombre del archivo: ")
-
+        opcion = input()
     
-    contenido = mostrar_contenido(path_canciones / cancion )
-    print(contenido)
+        if opcion == "a":
+            print("Vas a listar documentos con extensión .txt\n")
+            if path_canciones.is_dir():
+                for dir in path_canciones.iterdir():
 
-    
+                    if dir.is_file() and dir.suffix == ".txt":
+                        print("Nombre: ", dir.name)
 
-elif tarea == "c":
-    print("Vas a editar un documento")
+            clear()
+            continuar()
+            input()
 
-    with open(lista_canciones, "w") as file:
-        file.write("Lista de canciones favoritas: ")
-        file.close()
+        elif opcion == "b":
+            print("Vas a leer un documento.\n")
+            cancion = input("Ingresa el nombre del archivo: ")
+            contenido = mostrar_contenido(path_canciones / cancion )
+            print(contenido)
+            clear()
+            continuar()
+            input()
 
-    cancion_favorita = input("¿Cuál es tu canción favorita?:\n")
+        elif opcion == "c":
+            print("Vas a editar un documento\n")
 
-    with open(lista_canciones, "a+") as file:
-        file.write(cancion_favorita)
-    
-elif tarea == "d":
-    print("Salir del programa")
-else: 
-    print("Esa opción no existe")
+            with open(lista_canciones, "w") as file:
+                file.write("Lista de canciones favoritas: ")
+                file.close()
+
+            cancion_favorita = input("¿Cuál es tu canción favorita?:\n")
+
+            with open(lista_canciones, "a+") as file:
+                file.write(cancion_favorita)
+            
+            clear()
+            print("Puedes verla en el archivo 'lista.txt'")x
+            continuar()
+            input()  
+            
+        elif opcion == "x": 
+            print("Vas a salir del sistema")
+            input()
+            break
+    except:
+        clear()
+
