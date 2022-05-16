@@ -1,37 +1,36 @@
-#1. Importar la librería Path de Python
+#1. Importar la librería Path de Python:
 from pathlib import Path 
 import cli_titulo
 import cli_funciones
 
+#2. Bienvenida al usuario
 cli_titulo.imprimir_título()
 input()
-#Mostrar Bienvenida al usuario.
+
 print("""
 Bienvenid@ al CLI de archivos en el Sistema.
 Este es el directorio en el cual te encuentras: 
 """)
-#2. Mostrar la ruta del directorio actual   
+#3. Mostrar la ruta del directorio actual   
 print(Path.cwd())
 print("\n")
 
 cli_funciones.continuar()
 input()
-#Guardar nuestra ruta actual en una variable
+#4. Guardar nuestra ruta actual en una variable
 directorio_actual = Path.cwd() #Conocer en qué directorio estamos ubicados
 
-#3. Crear un objeto de tipo Path, que será capaz de moverse en los diferentes directorios
+#5. Crear un objeto de tipo Path, que será capaz de moverse en los diferentes directorios
 path = Path(directorio_actual)
 
-#Crear carpeta que contenga los archivos
+#6. Crear carpeta que contenga los archivos '.txt'
 path_canciones = path / "canciones"
 lista_canciones = path_canciones / "lista.txt"
 
 if not path_canciones.exists():
     path_canciones.mkdir()
 
-#Mover los archivos .txt en la carpeta creada
-
-
+#7. Ciclo While que realiza las tareas que el usuario elija.
 while True:
     try:
         
