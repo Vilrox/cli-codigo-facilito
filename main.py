@@ -34,13 +34,7 @@ if not path_canciones.exists():
 
 while True:
     try:
-        """
-        print("¿Qué tarea deseas realizar:
-        Menú de opciones:
-            Presiona a para Listar documentos.
-            Presiona b para Leer un documento.
-            Presiona c para Editar un documento.
-            Presiona x para Salir.")"""
+        
         cli_funciones.imprimir_menu()
 
         opcion = input()
@@ -59,11 +53,11 @@ while True:
 
         elif opcion == "b":
             print("Vas a leer un documento.\n")
-            cancion = input("Ingresa el nombre del archivo:")
+            cancion = input("Ingresa el nombre del archivo '.txt':")
             contenido = cli_funciones.mostrar_contenido(path_canciones / cancion )
             print(contenido)
-            cli_funciones.clear()
-            cli_continuar()
+            #cli_funciones.clear()
+            cli_funciones.continuar()
             input()
 
         elif opcion == "c":

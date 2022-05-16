@@ -1,6 +1,7 @@
 #Definir funciones del programa:
 
 def imprimir_menu():
+    print("\t¿Qué tarea deseas realizar?")
     print("\tMenú de opciones:")
     print("\t\t")
     print("\t\t[a] Listar documentos.")
